@@ -202,6 +202,7 @@
     NSTimeInterval timeoutInSeconds = [[command.arguments objectAtIndex:2] doubleValue];
     bool followRedirect = [[command.arguments objectAtIndex:3] boolValue];
     NSString *responseType = [command.arguments objectAtIndex:4];
+    NSNumber *reqId;
     if(command.arguments.count>5) {
       reqId = [command.arguments objectAtIndex:5];
     }
