@@ -37,7 +37,9 @@
 }
 
 - (void)removeRequest:(NSNumber*)reqId {
-    [reqDict removeObjectForKey:reqId];
+    if(reqId != nil) {
+      [reqDict removeObjectForKey:reqId];
+    }
 }
 
 - (void)setRequestSerializer:(NSString*)serializerName forManager:(AFHTTPSessionManager*)manager {
@@ -200,7 +202,9 @@
     NSTimeInterval timeoutInSeconds = [[command.arguments objectAtIndex:2] doubleValue];
     bool followRedirect = [[command.arguments objectAtIndex:3] boolValue];
     NSString *responseType = [command.arguments objectAtIndex:4];
-    NSNumber *reqId = [command.arguments objectAtIndex:5];
+    if(command.arguments.count>5) {
+      reqId = [command.arguments objectAtIndex:5];
+    }
 
     [self setRequestSerializer: @"default" forManager: manager];
     [self setupAuthChallengeBlock: manager];
