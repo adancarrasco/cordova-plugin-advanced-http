@@ -33,7 +33,9 @@
 }
 
 - (void)addRequest:(NSNumber*)reqId forTask:(NSURLSessionDataTask*)task {
-    [reqDict setObject:task forKey:reqId];
+    if(reqId != nil) {
+      [reqDict setObject:task forKey:reqId];
+    }
 }
 
 - (void)removeRequest:(NSNumber*)reqId {
@@ -265,7 +267,10 @@
     NSTimeInterval timeoutInSeconds = [[command.arguments objectAtIndex:4] doubleValue];
     bool followRedirect = [[command.arguments objectAtIndex:5] boolValue];
     NSString *responseType = [command.arguments objectAtIndex:6];
-    NSNumber *reqId = [command.arguments objectAtIndex:7];
+    NSNumber *reqId;
+    if(command.arguments.count>7) {
+      NSNumber *reqId = [command.arguments objectAtIndex:7];
+    }
 
     [self setRequestSerializer: serializerName forManager: manager];
     [self setupAuthChallengeBlock: manager];
