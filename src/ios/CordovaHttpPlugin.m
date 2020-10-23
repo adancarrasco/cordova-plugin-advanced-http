@@ -457,7 +457,10 @@
     NSTimeInterval timeoutInSeconds = [[command.arguments objectAtIndex:4] doubleValue];
     bool followRedirect = [[command.arguments objectAtIndex:5] boolValue];
     NSString *responseType = [command.arguments objectAtIndex:6];
-    NSNumber *reqId = [command.arguments objectAtIndex:7];
+    NSNumber *reqId;
+    if(command.arguments.count>7) {
+      NSNumber *reqId = [command.arguments objectAtIndex:7];
+    }
 
     [self setRequestHeaders: headers forManager: manager];
     [self setupAuthChallengeBlock: manager];
@@ -524,7 +527,10 @@
     NSString *filePath = [command.arguments objectAtIndex: 2];
     NSTimeInterval timeoutInSeconds = [[command.arguments objectAtIndex:3] doubleValue];
     bool followRedirect = [[command.arguments objectAtIndex:4] boolValue];
-    NSNumber *reqId = [command.arguments objectAtIndex:5];
+    NSNumber *reqId;
+    if(command.arguments.count>5) {
+      NSNumber *reqId = [command.arguments objectAtIndex:5];
+    }
 
     [self setRequestHeaders: headers forManager: manager];
     [self setupAuthChallengeBlock: manager];
